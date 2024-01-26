@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0; 
+    margin: 0; 
+    box-sizing: border-box
+}
+
+body {
+    background-color: #1b1f27;
+    font-family: Montserrat, Arial, sans-serif;
+}
+
+.area-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #181920;
+    width: 655px;
+    height: 450px;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login input {
+    margin-top: 20px;
+    background-color: #252A34;
+    border: none;
+    height: 45px;
+    outline: none;
+    border-radius: 10px;
+    color: #CBD0f7;
+    padding-left: 10px;
+}
+
+.login-header h1 {
+    color: #CBD0F7;
+    text-align: center;
+    
+}
+
+hr {
+    color: #CBD0F7
+}
+
+.login-header h2 {
+    color: #CBD0F7;
+    text-align: center;
+    
+}
+
+input::placeholder {
+    color: #CBD0f7;
+    font-size: 14px;
+}
+
+form [type="submit"] {
+    display: block;
+    background-color: #5568FE;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+p {
+    color: #CBD0F7;
+}
+
+a {
+    color: #5568FE;
+    text-decoration: none;
+    margin-left: 5px;
+}
