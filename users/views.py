@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.contrib import auth
 
 def cadastro(request):
     if request.method == 'GET':
@@ -30,5 +31,12 @@ def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
     elif request.method == 'POST':
-        pass
+        nome = request.POST.get('nome')
+        senha = request.POST.get('password')
 
+        user = auth.authenticate(username=nome, password=senha)
+
+        if user is not None:
+            # Retornar a pagina home
+            return HttpResponse('Usuario logado com sucesso')
+        return redirect('/users/login/?message=ERROR')
