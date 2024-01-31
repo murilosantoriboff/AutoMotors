@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy, reverse
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.contrib import auth
+from django.contrib.auth import authenticate
 
 def cadastro(request):
     if request.method == 'GET':
@@ -20,10 +21,9 @@ def cadastro(request):
             if user:
                 return redirect('/users/cadastro/?message=EMAIL_ERROR')
         except:
-            user = User.objects.create_user(username=nome, email=email, password=senha)
+            user = User.objects.create_user(nome, email, senha)
             user.save()
-            # Retornar a pagina home
-            return HttpResponse('Usuario criado com sucesso')
+            return redirect('/users/login/')
 
 
 
@@ -34,9 +34,8 @@ def login(request):
         nome = request.POST.get('nome')
         senha = request.POST.get('password')
 
-        user = auth.authenticate(username=nome, password=senha)
+        user = authenticate(username=nome, password=senha)
 
         if user is not None:
-            # Retornar a pagina home
-            return HttpResponse('Usuario logado com sucesso')
+            return redirect('/automotors/home/')
         return redirect('/users/login/?message=ERROR')

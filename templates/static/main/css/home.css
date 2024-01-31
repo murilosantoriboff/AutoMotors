@@ -6,3 +6,7 @@ body {
     margin-top: 10px;
     border-radius: 10px;
 }
+
+#btn-logout {
+    margin-left: 10px;
+}
