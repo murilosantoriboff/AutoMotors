@@ -33,14 +33,6 @@
                     </ul>
                   </li>
                 </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                  <button class="btn btn-outline-success" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                    </svg>
-                  </button>
-                </form>
                 <a href="{% url 'logout_sair' %}" class="btn btn-danger" id="btn-logout">Sair</a>
               </div>
             </div>
@@ -58,50 +50,24 @@
                 <th scope="col">Data Pedido</th>
                 <th scope="col">Data Entrega</th>
                 <th scope="col">Valor Total</th>
+                <th scope="col">Editar Pedido</th>
                 <th scope="col">Gerar PDF</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td><a href="#" class="btn btn-primary">Gerar PDF</a></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td><a href="#" class="btn btn-primary">Gerar PDF</a></td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td><a href="#" class="btn btn-primary">Gerar PDF</a></td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td><a href="#" class="btn btn-primary">Gerar PDF</a></td>
-              </tr>
+              {% for pedido in pedidos %}
+                <tr>
+                  <th scope="row">{{pedido.id}}</th>
+                  <td>{{pedido.cliente}}</td>
+                  <td>{% for produt in pedido.produtos.all %}{{produt}}{% endfor %}</td>
+                  <td>{{pedido.quantidade}}</td>
+                  <td>{{pedido.data_pedido}}</td>
+                  <td>{{pedido.data_entrega}}</td>
+                  <td>R${{pedido.valor_total}}</td>
+                  <td><a href="{% url 'editar_pedido' pedido.id %}" class="btn btn-warning">Editar</a></td>
+                  <td><a href="{% url 'gerar_pdf' pedido.id %}" class="btn btn-primary">Gerar PDF</a></td>
+                </tr>
+              {% endfor %}
             </tbody>
           </table>
     </div>
