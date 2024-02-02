@@ -1,0 +1,33 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+
+{% block addcss %}
+    <link rel="stylesheet" href="{% static 'main/css/editar_pedido.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include 'partials/header.html' %}
+        <form action="{% url 'editar_pedido' pedido.id %}" method="PUT">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Cliente</label>
+                <input type="text" class="form-control" value="{{pedido.cliente}}" disabled>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Quantidade</label>
+              <input type="number" class="form-control" value="{{pedido.quantidade}}" name="quantidade">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Data do Pedido</label>
+                <input type="date" class="form-control" value="{{pedido.data_pedido}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Data da Entrega</label>
+                <input type="date" class="form-control" value="{{pedido.data_entrega}}">
+            </div>
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </form>
+        <a href="{% url 'excluir_pedido' pedido.id %}" class="btn btn-danger" id="btn-excluir-pedido">Excluir</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+body {
+    background-color: #A7C5C5;
+}
+
+#main-navbar {
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+#btn-logout {
+    margin-left: 10px;
+}
+
+#btn-excluir-pedido {
+    margin-top: 10px;
+
+}

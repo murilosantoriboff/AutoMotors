@@ -2,73 +2,41 @@
 {% load static %}
 
 {% block addcss %}
-    <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+  <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" id="main-navbar">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="{% url 'home' %}"> <img src="{% static 'geral/img/gear-ico.ico' %}" alt="logo AutoMotors">    Auto Motors</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Pagina Inicial</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Acesso a API</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Criação
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Cadastrar Cliente</a></li>
-                      <li><a class="dropdown-item" href="#">Cadastrar Produto</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Cadastrar Pedido</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <a href="{% url 'logout_sair' %}" class="btn btn-danger" id="btn-logout">Sair</a>
-              </div>
-            </div>
-          </nav>
-          <br>
-          <br>
-          <br>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Cliente</th>
-                <th scope="col">Produto</th>
-                <th scope="col">Quantidade</th>
-                <th scope="col">Data Pedido</th>
-                <th scope="col">Data Entrega</th>
-                <th scope="col">Valor Total</th>
-                <th scope="col">Editar Pedido</th>
-                <th scope="col">Gerar PDF</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for pedido in pedidos %}
-                <tr>
-                  <th scope="row">{{pedido.id}}</th>
-                  <td>{{pedido.cliente}}</td>
-                  <td>{% for produt in pedido.produtos.all %}{{produt}}{% endfor %}</td>
-                  <td>{{pedido.quantidade}}</td>
-                  <td>{{pedido.data_pedido}}</td>
-                  <td>{{pedido.data_entrega}}</td>
-                  <td>R${{pedido.valor_total}}</td>
-                  <td><a href="{% url 'editar_pedido' pedido.id %}" class="btn btn-warning">Editar</a></td>
-                  <td><a href="{% url 'gerar_pdf' pedido.id %}" class="btn btn-primary">Gerar PDF</a></td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-    </div>
-{% endblock %}
+  <div class="container">
+    {% include 'partials/header.html' %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Cliente</th>
+          <th scope="col">Produto</th>
+          <th scope="col">Quantidade</th>
+          <th scope="col">Data Pedido</th>
+          <th scope="col">Data Entrega</th>
+          <th scope="col">Valor Total</th>
+          <th scope="col">Editar Pedido</th>
+          <th scope="col">Gerar PDF</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pedido in pedidos %}
+          <tr>
+            <th scope="row">{{pedido.id}}</th>
+            <td>{{pedido.cliente}}</td>
+            <td>{% for produt in pedido.produtos.all %}{{produt}}{% endfor %}</td>
+            <td>{{pedido.quantidade}}</td>
+            <td>{{pedido.data_pedido}}</td>
+            <td>{{pedido.data_entrega}}</td>
+            <td>R${{pedido.valor_total}}</td>
+            <td><a href="{% url 'editar_pedido' pedido.id %}" class="btn btn-warning">Editar</a></td>
+            <td><a href="{% url 'gerar_pdf' pedido.id %}" class="btn btn-primary">Gerar PDF</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}
