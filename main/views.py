@@ -27,3 +27,7 @@ def excluir_pedido(request, id):
 
 def gerar_PDF(request, id):
     pass
+
+def cadastrar_cliente(request):
+    if request.method == 'GET':
+        return render(request, 'cadastrar_cliente.html')

@@ -1,0 +1,54 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+
+{% block addcss %}
+    <link rel="stylesheet" href="{% static 'main/css/editar_pedido.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+    <style>
+        .cadastrar_cliente {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        #form-cadastrar-cliente {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 1000px;
+            height: 650px;
+            border-radius: 20px;
+            padding: 30px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {% include 'partials/header.html' %}
+    <section class="cadastrar_cliente">
+
+        <form method="POST" action="{% url 'cadastrar_cliente' %}" id="form-cadastrar-cliente">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <input type="text" class="form-control" name="nome">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Endereço</label>
+                <input type="text" class="form-control" name="endereco">
+            </div>
+            <div class="mb-3 form-check">
+                <label class="form-label">Telefone</label>
+                <input type="number" class="form-control" name="telefone">
+            </div>
+            <div class="mb-3 form-check">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email">
+            </div>
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+
+    </section>
+{% endblock %}
