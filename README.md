@@ -1,6 +1,6 @@
 <h1>Auto Motors</h1>
 
-> Status: Developing, Not Finished ⚠️
+> Status: Finished
 
 ### Auto Motors it's a website planned to manage you clients and produts of a factoryyou can create, delete and have full control over customer orders and the products your company produces, where i builted with Python and Django for Back-end and HTLM 5, CSS 3, JavaScript for Front-End.
 
